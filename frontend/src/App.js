@@ -1,26 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // axiosをインポート
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
-  const [message, setMessage] = useState("Loading backend status...");
-
-  useEffect(() => {
-    // バックエンドのヘルスチェックAPIを叩く
-    axios.get('/') // package.jsonのproxy設定により '/api' などを付けずに済む
-      .then(response => {
-        setMessage(response.data.message || "Backend connected!");
-      })
-      .catch(error => {
-        console.error("Error fetching backend status:", error);
-        setMessage("Failed to connect to backend.");
-      });
-  }, []); // 初回レンダリング時にのみ実行
-
   return (
-    <div>
-      <h1>Candidate Evaluator App</h1>
-      <p>Backend Status: {message}</p>
-      {/* ここに今後テキストエリアやダッシュボードを追加していく */}
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
