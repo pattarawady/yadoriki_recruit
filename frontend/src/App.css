@@ -36,3 +36,77 @@
     transform: rotate(360deg);
   }
 }
+
+/* 評価詳細テーブル全体のスタイル */
+.evaluation-table {
+  width: 100%;
+  border-collapse: collapse; /* 線を重ねる */
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 0.9em; /* 少し文字を小さく */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* ちょっと影をつける */
+  border-radius: 4px; /* 角を少し丸める */
+  overflow: hidden; /* 角丸のために必要 */
+}
+
+/* テーブルヘッダーのスタイル */
+.evaluation-table th {
+  border: 1px solid #ddd;
+  padding: 10px 12px; /* パディング調整 */
+  text-align: left;
+  background-color: #f8f9fa; /* 少し薄いグレー */
+  font-weight: bold;
+  color: #495057; /* 少し濃いグレー */
+}
+
+/* テーブルデータセルのスタイル */
+.evaluation-table td {
+  border: 1px solid #ddd;
+  padding: 10px 12px; /* パディング調整 */
+  text-align: left;
+  vertical-align: top; /* セル内での縦位置を上に */
+}
+
+/* 評価項目名の列のスタイル (少し幅を固定) */
+.evaluation-table td:first-child {
+  min-width: 120px; /* 最低幅 */
+  font-weight: 500; /* 少し太字 */
+}
+
+/* 評価記号セルのスタイル */
+.evaluation-symbol {
+  text-align: center; /* 記号を中央揃え */
+  font-weight: bold;
+  min-width: 50px; /* 最低幅 */
+}
+
+/* 記号ごとの色分け (クラスを追加して適用) */
+.symbol-excellent { /* ◎ */
+  color: #198754; /* 緑 */
+}
+.symbol-good { /* 〇 */
+  color: #ffc107; /* 黄色 (オレンジより見やすいかも) */
+}
+.symbol-fair { /* △ */
+  color: #6c757d; /* グレー */
+}
+.symbol-poor { /* × */
+  color: #dc3545; /* 赤 */
+}
+
+/* 理由セルのスタイル */
+.evaluation-reason {
+  word-break: break-word; /* 長い場合に折り返す */
+}
+
+/* 全体コメントのスタイル */
+.overall-comment-box {
+    white-space: pre-wrap; /* 改行を保持 */
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    margin-top: 10px;
+    color: #333;
+    line-height: 1.6; /* 行間を少し広げる */
+}
