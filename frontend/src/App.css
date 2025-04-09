@@ -1,112 +1,122 @@
+/* frontend/src/App.css (マッチングアプリ風基本スタイル) */
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f4f7f6; /* 少し色味のある白背景 */
+  color: #333; /* 基本の文字色 */
+}
+
+/* アプリ全体のコンテナ */
 .App {
-  text-align: center;
+  max-width: 900px; /* 最大幅 */
+  margin: 20px auto; /* 上下マージンと中央寄せ */
+  padding: 20px;
+  background-color: #ffffff; /* 白背景 */
+  border-radius: 8px; /* 少し角丸 */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 影 */
+  display: flex; /* Flexbox でレイアウト */
+  flex-direction: column; /* 縦方向に要素を並べる */
+  gap: 20px; /* 要素間の隙間 */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* 各セクションの基本的なスタイル */
+.input-section,
+.results-section,
+.export-section {
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: #fff; /* セクション内も白 */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1, h2, h3 {
+  color: #1a237e; /* 見出しの色 (例: 濃い青) */
+  margin-top: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+/* テキストエリア */
+.candidate-textarea {
+  width: calc(100% - 22px); /* padding + border を考慮 */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1em;
+  min-height: 120px; /* 最低限の高さ */
+  margin-bottom: 10px;
+  resize: vertical; /* 縦方向のリサイズを許可 */
+}
+.candidate-textarea:disabled {
+  background-color: #f1f1f1;
+}
+
+/* ボタン */
+.analyze-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #3f51b5; /* 例: インディゴ */
   color: white;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+.analyze-button:hover:not(:disabled) {
+  background-color: #303f9f; /* 少し濃く */
+}
+.analyze-button:disabled {
+  background-color: #9fa8da; /* 薄い色 */
+  cursor: not-allowed;
 }
 
-.App-link {
-  color: #61dafb;
+/* 結果リストエリア (仮) */
+.results-list-area {
+  margin-top: 20px;
+  min-height: 100px; /* 最低限の高さを確保 */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* エクスポートボタン */
+ .export-button {
+  padding: 8px 15px;
+  font-size: 0.9em;
+  cursor: pointer;
+  background-color: #00796b; /* 例: ティール */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-left: 10px; /* ラジオボタンとの間 */
 }
+ .export-button:hover {
+   background-color: #004d40;
+ }
 
-/* 評価詳細テーブル全体のスタイル */
-.evaluation-table {
-  width: 100%;
-  border-collapse: collapse; /* 線を重ねる */
-  margin-top: 10px;
-  margin-bottom: 20px;
-  font-size: 0.9em; /* 少し文字を小さく */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* ちょっと影をつける */
-  border-radius: 4px; /* 角を少し丸める */
-  overflow: hidden; /* 角丸のために必要 */
-}
-
-/* テーブルヘッダーのスタイル */
-.evaluation-table th {
-  border: 1px solid #ddd;
-  padding: 10px 12px; /* パディング調整 */
-  text-align: left;
-  background-color: #f8f9fa; /* 少し薄いグレー */
-  font-weight: bold;
-  color: #495057; /* 少し濃いグレー */
-}
-
-/* テーブルデータセルのスタイル */
-.evaluation-table td {
-  border: 1px solid #ddd;
-  padding: 10px 12px; /* パディング調整 */
-  text-align: left;
-  vertical-align: top; /* セル内での縦位置を上に */
-}
-
-/* 評価項目名の列のスタイル (少し幅を固定) */
-.evaluation-table td:first-child {
-  min-width: 120px; /* 最低幅 */
-  font-weight: 500; /* 少し太字 */
-}
-
-/* 評価記号セルのスタイル */
-.evaluation-symbol {
-  text-align: center; /* 記号を中央揃え */
-  font-weight: bold;
-  min-width: 50px; /* 最低幅 */
-}
-
-/* 記号ごとの色分け (クラスを追加して適用) */
-.symbol-excellent { /* ◎ */
-  color: #198754; /* 緑 */
-}
-.symbol-good { /* 〇 */
-  color: #ffc107; /* 黄色 (オレンジより見やすいかも) */
-}
-.symbol-fair { /* △ */
-  color: #6c757d; /* グレー */
-}
-.symbol-poor { /* × */
-  color: #dc3545; /* 赤 */
-}
-
-/* 理由セルのスタイル */
-.evaluation-reason {
-  word-break: break-word; /* 長い場合に折り返す */
-}
-
-/* 全体コメントのスタイル */
-.overall-comment-box {
-    white-space: pre-wrap; /* 改行を保持 */
-    background: #f8f9fa;
-    padding: 15px;
-    border-radius: 4px;
-    border: 1px solid #eee;
+ .export-controls label {
+    margin-right: 10px;
+    cursor: pointer;
+ }
+ .export-controls input[type="radio"] {
+    margin-right: 4px;
+    vertical-align: middle;
+ }
+ .export-section p { /* 注釈のスタイル */
+    font-size: 0.8em;
+    color: #666;
     margin-top: 10px;
-    color: #333;
-    line-height: 1.6; /* 行間を少し広げる */
+    margin-bottom: 0;
+ }
+
+/* エラーメッセージ */
+.error-message {
+    color: #d32f2f; /* 赤色 */
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #ffebee; /* 薄い赤背景 */
+    border: 1px solid #d32f2f;
+    border-radius: 4px;
 }
