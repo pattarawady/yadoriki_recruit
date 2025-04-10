@@ -1,14 +1,27 @@
 # backend/app/api/evaluate_routes.py
-from flask import Blueprint, request, jsonify, Response
+from flask import Blueprint, request, jsonify, Response, make_response # make_response を追加
 from ..services import gemini_service
 from ..services import scoring_service
 from ..utils import text_processing
 from ..utils import export_utils
 from datetime import datetime
-# ▼▼▼ config モジュールをインポート ▼▼▼
-from .. import config # '..'は一つ上の階層(app), そこにある config.py を指す
 
 bp = Blueprint('evaluate_api', __name__, url_prefix='/api')
+
+# --- ▼▼▼ OPTIONS リクエストハンドラを追加 ▼▼▼ ---
+# /api/evaluate への OPTIONS リクエストを明示的に処理
+@bp.route('/evaluate', methods=['OPTIONS'])
+def handle_evaluate_options():
+    # CORSヘッダーを含む空のレスポンスを返す
+    # Flask-CORS が自動でヘッダーを付与してくれるはずだが、念のため make_response を使う
+    response = make_response()
+    # 必要に応じて手動でヘッダーを追加することもできるが、通常は Flask-CORS に任せる
+    # response.headers.add("Access-Control-Allow-Origin", "*") # または特定のオリジン
+    # response.headers.add("Access-Control-Allow-Headers", "Content-Type,Authorization")
+    # response.headers.add("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
+    print("Handling OPTIONS request for /api/evaluate") # ログを追加
+    return response, 200 # ステータス 200 OK で返す
+# --- ▲▲▲ OPTIONS リクエストハンドラを追加 ▲▲▲ ---
 
 @bp.route('/evaluate', methods=['POST'])
 def evaluate_candidate():
