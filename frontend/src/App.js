@@ -61,7 +61,8 @@ function App() {
   };
 
   const handleExportClick = async () => {
-    const exportData = selectedResult ? [selectedResult] : resultsList; // Export selected or all
+    const exportData = resultsList;
+    //const exportData = selectedResult ? [selectedResult] : resultsList; // Export selected or all
     if (exportData.length === 0) { alert("エクスポートする結果がありません。"); return; }
     console.log(`Exporting ${exportData.length} results as ${exportFormat}...`);
     try {
