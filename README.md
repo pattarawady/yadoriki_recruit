@@ -1,4 +1,4 @@
-#ここ読んだ方が早いかも
+# ここ読んだ方が早いかも
 https://deepwiki.com/pattarawady/yadoriki_recruit
 
 # AI 候補者評価アプリ Ver.1.2 🎉
